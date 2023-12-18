@@ -12,7 +12,7 @@ import (
 var Client *mongo.Client
 
 func Connect() {
-    uri := "mongodb://root:example@mongodb:27017" // Passen Sie die URI entsprechend an
+    uri := "mongodb+srv://martin:9Jj8hFg5YPE2y8TM@cluster0.02b2jy1.mongodb.net/" // Passen Sie die URI entsprechend an
     ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
     defer cancel()
 
