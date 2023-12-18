@@ -13,12 +13,11 @@ func loadRoutes() *chi.Mux {
     userHandler := &handler.User{}
 
     router.Route("/users", func(r chi.Router) {
-        router.Post("/", userHandler.Create)
-        router.Get("/{id}", userHandler.GetByID)       
-        router.Get("/", orderHandler.List)
-        router.Put("/{id}", orderHandler.UpdateByID)
-        router.Delete("/{id}", orderHandler.DeleteByID)
-
+        r.Post("/", userHandler.Create)
+        r.Get("/{id}", userHandler.GetByID)
+        r.Get("/", userHandler.List)
+        r.Put("/{id}", userHandler.UpdateByID)
+        r.Delete("/{id}", userHandler.DeleteByID)
     })
 
     return router
