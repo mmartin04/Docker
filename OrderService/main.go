@@ -3,8 +3,8 @@ package main
 import (
     "context"
     "fmt"
-    "github.com/SimonPietrucha/Docker/OrderService/Anwendung"
-    "github.com/SimonPietrucha/Docker/OrderService/db"
+    "github.com/mmartin04/Docker/OrderService/Anwendung"
+    "github.com/mmartin04/Docker/OrderService/db"
 )
 
 func main() {

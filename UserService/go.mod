@@ -1,4 +1,4 @@
-module github.com/SimonPietrucha/Docker/UserService
+module github.com/mmartin04/Docker/UserService
 
 go 1.20
 

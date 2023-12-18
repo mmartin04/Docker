@@ -4,7 +4,7 @@ import (
     "net/http"
     "github.com/go-chi/chi/v5"
     "github.com/go-chi/chi/v5/middleware"
-    "github.com/SimonPietrucha/Docker/UserService/handler"
+    "github.com/mmartin04/Docker/UserService/handler"
 )
 
 func loadRoutes() *chi.Mux {

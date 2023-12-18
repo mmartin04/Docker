@@ -3,8 +3,8 @@ package main
 import (
     "context"
     "fmt"
-    "github.com/SimonPietrucha/Docker/UserService/Anwendung"
-    "github.com/SimonPietrucha/Docker/UserService/db"
+    "github.com/mmartin04/Docker/UserService/Anwendung"
+    "github.com/mmartin04/Docker/UserService/db"
 )
 
 func main() {
