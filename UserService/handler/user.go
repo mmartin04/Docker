@@ -15,6 +15,50 @@ type User struct{}
 
 // Vorhandene Methoden: Create, GetByID
 
+func (u *User) Create(w http.ResponseWriter, r *http.Request) {
+    var user model.User
+    err := json.NewDecoder(r.Body).Decode(&user)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    // Generieren einer neuen ID für den Benutzer
+    user.ID = primitive.NewObjectID().Hex()
+
+    collection := db.GetCollection("users")
+    _, err = collection.InsertOne(context.TODO(), user)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+    json.NewEncoder(w).Encode(user)
+}
+
+
+func (u *User) GetByID(w http.ResponseWriter, r *http.Request) {
+    id := chi.URLParam(r, "id")
+    objID, err := primitive.ObjectIDFromHex(id)
+    if err != nil {
+        http.Error(w, "Ungültige ID", http.StatusBadRequest)
+        return
+    }
+
+    var user model.User
+    collection := db.GetCollection("users")
+    err = collection.FindOne(context.TODO(), bson.M{"_id": objID}).Decode(&user)
+    if err != nil {
+        http.Error(w, "Benutzer nicht gefunden", http.StatusNotFound)
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
+    json.NewEncoder(w).Encode(user)
+}
+
+
 // List - Listet alle Benutzer auf
 func (u *User) List(w http.ResponseWriter, r *http.Request) {
     collection := db.GetCollection("users")
